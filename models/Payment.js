@@ -1,38 +1,58 @@
-
 const mongoose = require('mongoose');
 
-const paymentSchema = new mongoose.Schema({
+const paymentSchema = new mongoose.Schema(
+{
+  leadId: {
+    type: String,
+    default: ''
+  },
 
-  leadId: String,
+  leadName: {
+    type: String,
+    default: ''
+  },
 
-  customer: String,
+  site: {
+    type: String,
+    default: ''
+  },
 
-  project: String,
+  amount: {
+    type: Number,
+    required: true
+  },
 
-  unit: String,
-
-  amount: Number,
-
-  type: String,
+  type: {
+    type: String,
+    default: 'Token'
+  },
 
   status: {
     type: String,
     default: 'Pending'
   },
 
-  paidOn: String,
+  date: {
+    type: String,
+    default: () => new Date().toISOString()
+  },
 
-  notes: String,
+  notes: {
+    type: String,
+    default: ''
+  },
 
-  createdBy: String
-
-}, {
+  createdBy: {
+    type: String,
+    default: ''
+  }
+},
+{
   timestamps: true
-});
+}
+);
 
-module.exports =
-  mongoose.model(
-    'Payment',
-    paymentSchema
-  );
-
+module.exports = mongoose.model(
+  'Payment',
+  paymentSchema
+);
